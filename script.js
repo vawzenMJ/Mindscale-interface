@@ -20,9 +20,9 @@ const RECOMMENDATIONS = {
         advice: "You are generally stable, but watch for escalating stress. Focus on robust self-care and stress management.",
         copingTips: [
             "Establish a Routine:Maintain a consistent sleep schedule (7-9 hours) and regular mealtimes.",
-            "Practice Mindfulness: Incorporate daily meditation, deep breathing exercises, or gentle stretching.",
+            "Practice Mindfulness:Incorporate daily meditation, deep breathing exercises, or gentle stretching.",
             "Build Social Resilience:Maintain a balance between social activity and quiet time to prevent burnout.",
-            "Set Boundaries:** Learn to say 'no' to commitments that deplete your energy.",
+            "Set Boundaries:Learn to say 'no' to commitments that deplete your energy.",
             "Consider Proactive Support:Consult a therapist or counselor for preventative mental wellness strategies."
         ]
     },
@@ -32,7 +32,7 @@ const RECOMMENDATIONS = {
         copingTips: [
             "Prioritize Physical Health:Maintain a balanced diet and regular, moderate exercise.",
             "Nurture Connections:Maintain strong social connections and actively network with friends and family.",
-            "Engage in Hobbies: Regularly participate in hobbies, creative outlets, and activities that bring genuine joy.",
+            "Engage in Hobbies:Regularly participate in hobbies, creative outlets, and activities that bring genuine joy.",
             "Continuous Learning:Learn a new skill or challenge your mind regularly to maintain cognitive flexibility.",
             "Reflect and Plan:Keep a journal or practice gratitude to maintain perspective and emotional balance."
         ]
