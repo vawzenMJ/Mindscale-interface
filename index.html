@@ -15,6 +15,10 @@
         <p class="subtitle">Please answer all questions based on your current state.</p>
 
         <form id="assessment-form">
+
+            <input type="hidden" name="Gender" value="Male">
+            <input type="hidden" name="self_employed" value="No">
+
             <h2>Background Factors</h2>
 
             <div class="question-group">
@@ -97,9 +101,14 @@
             <div class="question-group">
                 <label>9. Have you lost interest in your work/studies? (Work_Interest)</label>
                 <div class="radio-options">
-                    <label><input type="radio" name="Work_Interest" value="No" required> Yes, I have lost
-                        interest</label>
-                    <label><input type="radio" name="Work_Interest" value="Yes"> No, I still have interest</label>
+                    <label>
+                        <input type="radio" name="Work_Interest" value="Yes" required>
+                        Yes, I have lost interest
+                    </label>
+                    <label>
+                        <input type="radio" name="Work_Interest" value="No">
+                        No, I still have interest
+                    </label>
                 </div>
             </div>
 
