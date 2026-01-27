@@ -4,160 +4,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mental Wellness Risk Assessment</title>
+    <title>DeKUT Staff Wellness Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <div class="container">
-        <h1>🧠 Mental Wellness Risk Assessment</h1>
-        <p class="subtitle">Please answer all questions based on your current state.</p>
+    <div class="main-wrapper">
+        <div class="container" id="main-container">
+            <header class="dekut-header">
+                <img src="Dekut Logo.png" alt="DeKUT Logo" class="univ-logo">
+                <p class="univ-name">DEDAN KIMATHI UNIVERSITY OF TECHNOLOGY</p>
+                <h1>Staff Wellness Portal</h1>
+                <p class="subtitle">AI-Driven Mental Health Risk Assessment</p>
+            </header>
 
-        <form id="assessment-form">
-
-            <input type="hidden" name="Gender" value="Male">
-            <input type="hidden" name="self_employed" value="No">
-
-            <h2>Background Factors</h2>
-
-            <div class="question-group">
-                <label>1. Do you have a family history of mental illness? (family_history)</label>
-                <div class="radio-options">
-                    <label><input type="radio" name="family_history" value="Yes" required> Yes</label>
-                    <label><input type="radio" name="family_history" value="No"> No</label>
+            <div class="disclaimer-box">
+                <div class="disclaimer-header">
+                    <span>⚠️ IMPORTANT MEDICAL DISCLAIMER</span>
+                </div>
+                <div class="disclaimer-body">
+                    <p>This portal is an automated screening tool and not a substitute for professional medical
+                        diagnosis or clinical advice.</p>
                 </div>
             </div>
 
-            <div class="question-group">
-                <label>2. Have you had a mental health condition diagnosis in the past? (Mental_Health_History)</label>
-                <div class="radio-options">
-                    <label><input type="radio" name="Mental_Health_History" value="Yes" required> Yes</label>
-                    <label><input type="radio" name="Mental_Health_History" value="No"> No</label>
+            <form id="assessment-form">
+                <input type="hidden" name="Gender" value="Male">
+                <input type="hidden" name="self_employed" value="No">
+
+                <div class="form-section">
+                    <h2 class="section-title">Background & History</h2>
+                    <div class="question-group">
+                        <label>1. Do you have a family history of mental illness?</label>
+                        <div class="radio-options">
+                            <label class="custom-radio"><input type="radio" name="family_history" value="Yes"
+                                    required><span>Yes</span></label>
+                            <label class="custom-radio"><input type="radio" name="family_history"
+                                    value="No"><span>No</span></label>
+                        </div>
+                    </div>
+                    <div class="question-group">
+                        <label>2. Have you had a mental health condition diagnosis in the past?</label>
+                        <div class="radio-options">
+                            <label class="custom-radio"><input type="radio" name="Mental_Health_History" value="Yes"
+                                    required><span>Yes</span></label>
+                            <label class="custom-radio"><input type="radio" name="Mental_Health_History"
+                                    value="No"><span>No</span></label>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <h2>Current Well-being & Habits</h2>
-
-            <div class="question-group">
-                <label for="Days_Indoors">3. In the last month, how much time have you spent predominantly indoors?
-                    (Days_Indoors)</label>
-                <select id="Days_Indoors" name="Days_Indoors" required>
-                    <option value="">-- Select an option --</option>
-                    <option value="1-14 days">1-14 days</option>
-                    <option value="15-30 days">15-30 days</option>
-                    <option value="2-4 weeks">2-4 weeks</option>
-                    <option value="4-8 weeks">4-8 weeks</option>
-                    <option value="More than 2 months">More than 2 months</option>
-                </select>
-            </div>
-
-            <div class="question-group">
-                <label for="Mood_Swings">4. How would you rate your current frequency/intensity of mood swings?
-                    (Mood_Swings)</label>
-                <select id="Mood_Swings" name="Mood_Swings" required>
-                    <option value="">-- Select an option --</option>
-                    <option value="Low">Low</option>
-                    <option value="Medium">Medium</option>
-                    <option value="High">High</option>
-                </select>
-            </div>
-
-            <div class="question-group">
-                <label>5. Are you experiencing a noticeable increase in stress? (Growing_Stress)</label>
-                <div class="radio-options">
-                    <label><input type="radio" name="Growing_Stress" value="Yes" required> Yes</label>
-                    <label><input type="radio" name="Growing_Stress" value="No"> No</label>
+                <div class="form-section">
+                    <h2 class="section-title">Current Habits & Well-being</h2>
+                    <div class="question-group">
+                        <label>3. Time spent predominantly indoors recently?</label>
+                        <select name="Days_Indoors" required>
+                            <option value="">-- Select --</option>
+                            <option value="1-14 days">1-14 days</option>
+                            <option value="15-30 days">15-30 days</option>
+                            <option value="More than 2 months">More than 2 months</option>
+                        </select>
+                    </div>
+                    <div class="question-group">
+                        <label>4. Intensity of mood swings?</label>
+                        <select name="Mood_Swings" required>
+                            <option value="">-- Select --</option>
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                    </div>
+                    <div class="question-group">
+                        <label>5. Noticeable increase in stress?</label>
+                        <div class="radio-options">
+                            <label class="custom-radio"><input type="radio" name="Growing_Stress" value="Yes"
+                                    required><span>Yes</span></label>
+                            <label class="custom-radio"><input type="radio" name="Growing_Stress"
+                                    value="No"><span>No</span></label>
+                        </div>
+                    </div>
+                    <div class="question-group">
+                        <label>6. Changes in habits (sleep/eating)?</label>
+                        <div class="radio-options">
+                            <label class="custom-radio"><input type="radio" name="Changes_Habits" value="Yes"
+                                    required><span>Yes</span></label>
+                            <label class="custom-radio"><input type="radio" name="Changes_Habits"
+                                    value="No"><span>No</span></label>
+                        </div>
+                    </div>
+                    <div class="question-group">
+                        <label>7. Struggling to cope with daily demands?</label>
+                        <div class="radio-options">
+                            <label class="custom-radio"><input type="radio" name="Coping_Struggles" value="Yes"
+                                    required><span>Yes</span></label>
+                            <label class="custom-radio"><input type="radio" name="Coping_Struggles"
+                                    value="No"><span>No</span></label>
+                        </div>
+                    </div>
+                    <div class="question-group">
+                        <label>8. Decrease in social desire?</label>
+                        <div class="radio-options">
+                            <label class="custom-radio"><input type="radio" name="Social_Weakness" value="Yes"
+                                    required><span>Yes</span></label>
+                            <label class="custom-radio"><input type="radio" name="Social_Weakness"
+                                    value="No"><span>No</span></label>
+                        </div>
+                    </div>
+                    <div class="question-group">
+                        <label>9. Lost interest in work?</label>
+                        <div class="radio-options">
+                            <label class="custom-radio"><input type="radio" name="Work_Interest" value="Yes"
+                                    required><span>Yes</span></label>
+                            <label class="custom-radio"><input type="radio" name="Work_Interest"
+                                    value="No"><span>No</span></label>
+                        </div>
+                    </div>
+                    <div class="question-group">
+                        <label>10. Sought treatment recently?</label>
+                        <div class="radio-options">
+                            <label class="custom-radio"><input type="radio" name="treatment" value="Yes"
+                                    required><span>Yes</span></label>
+                            <label class="custom-radio"><input type="radio" name="treatment"
+                                    value="No"><span>No</span></label>
+                        </div>
+                    </div>
+                    <div class="question-group">
+                        <label>11. Adequate care options available?</label>
+                        <div class="radio-options">
+                            <label class="custom-radio"><input type="radio" name="care_options" value="Yes"
+                                    required><span>Yes</span></label>
+                            <label class="custom-radio"><input type="radio" name="care_options"
+                                    value="No"><span>No</span></label>
+                        </div>
+                    </div>
+                    <div class="question-group">
+                        <label>12. Comfortable discussing with a professional?</label>
+                        <div class="radio-options">
+                            <label class="custom-radio"><input type="radio" name="mental_health_interview" value="Yes"
+                                    required><span>Yes</span></label>
+                            <label class="custom-radio"><input type="radio" name="mental_health_interview"
+                                    value="No"><span>No</span></label>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="question-group">
-                <label>6. Have you noticed recent major changes in your daily habits (sleep, eating, etc.)?
-                    (Changes_Habits)</label>
-                <div class="radio-options">
-                    <label><input type="radio" name="Changes_Habits" value="Yes" required> Yes</label>
-                    <label><input type="radio" name="Changes_Habits" value="No"> No</label>
-                </div>
-            </div>
-
-            <div class="question-group">
-                <label>7. Do you feel you are currently struggling to cope with daily life demands?
-                    (Coping_Struggles)</label>
-                <div class="radio-options">
-                    <label><input type="radio" name="Coping_Struggles" value="Yes" required> Yes</label>
-                    <label><input type="radio" name="Coping_Struggles" value="No"> No</label>
-                </div>
-            </div>
-
-            <div class="question-group">
-                <label>8. Have you felt a noticeable decrease in your desire for social interaction?
-                    (Social_Weakness)</label>
-                <div class="radio-options">
-                    <label><input type="radio" name="Social_Weakness" value="Yes" required> Yes</label>
-                    <label><input type="radio" name="Social_Weakness" value="No"> No</label>
-                </div>
-            </div>
-
-            <div class="question-group">
-                <label>9. Have you lost interest in your work/studies? (Work_Interest)</label>
-                <div class="radio-options">
-                    <label>
-                        <input type="radio" name="Work_Interest" value="Yes" required>
-                        Yes, I have lost interest
+                <div class="consent-group">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="consent-check" required>
+                        <span class="checkmark"></span>
+                        I acknowledge that this is an assessment tool and not a substitute for medical advice.
                     </label>
-                    <label>
-                        <input type="radio" name="Work_Interest" value="No">
-                        No, I still have interest
-                    </label>
                 </div>
-            </div>
 
-            <h2>Support & Care Factors</h2>
-
-            <div class="question-group">
-                <label>10. Have you sought any professional mental health treatment or therapy recently?
-                    (treatment)</label>
-                <div class="radio-options">
-                    <label><input type="radio" name="treatment" value="Yes" required> Yes</label>
-                    <label><input type="radio" name="treatment" value="No"> No</label>
-                </div>
-            </div>
-
-            <div class="question-group">
-                <label>11. Do you believe you currently have adequate care options or support systems?
-                    (care_options)</label>
-                <div class="radio-options">
-                    <label><input type="radio" name="care_options" value="Yes" required> Yes</label>
-                    <label><input type="radio" name="care_options" value="Not sure"> Not sure</label>
-                    <label><input type="radio" name="care_options" value="No"> No</label>
-                </div>
-            </div>
-
-            <div class="question-group">
-                <label>12. Are you comfortable discussing your mental health with a professional?
-                    (mental_health_interview)</label>
-                <div class="radio-options">
-                    <label><input type="radio" name="mental_health_interview" value="Yes" required> Yes</label>
-                    <label><input type="radio" name="mental_health_interview" value="Maybe"> Maybe</label>
-                    <label><input type="radio" name="mental_health_interview" value="No"> No</label>
-                </div>
-            </div>
-
-            <button type="button" onclick="calculateRisk()">Calculate My Risk Assessment</button>
-        </form>
-
-        <div id="result">
+                <button type="button" class="submit-btn" onclick="calculateRisk()">Run Assessment</button>
+            </form>
         </div>
+    </div>
 
-        <div class="final-disclaimer">
-            ⚠️Disclaimer:This tool is an automated assessment tool and is not a substitute for professional medical
-            diagnosis, advice, or intervention. If you are in crisis, please seek immediate help.
+    <div id="result-page" class="result-overlay hidden">
+        <div class="result-container">
+            <button class="back-link" onclick="closeResult()">← Return to Assessment</button>
+            <div id="analysis-content"></div>
+            <div class="dekut-resources">
+                <h3>🏛️ DeKUT Support Resources</h3>
+                <p>Visit the DeKUT Medical Center or the University Counselor's office at the Main Campus for
+                    confidential support.</p>
+            </div>
         </div>
-
     </div>
 
     <script src="script.js"></script>
-
 </body>
 
 </html>

@@ -1,44 +1,46 @@
-
 // The URL of your deployed Flask API on Render
 const API_URL = "https://mental-model.onrender.com/predict"; 
 
-// --- Recommendation and Coping Data (Kept Local for Fast Display) ---
+// --- Recommendation and Coping Data (Tailored for DeKUT Staff) ---
 const RECOMMENDATIONS = {
     "High Risk": {
         colorClass: "result-high",
-        advice: "Immediate and professional care is strongly recommended. Your scores indicate significant current stressors or risk factors.",
+        advice: "DeKUT values your well-being. Your assessment indicates significant strain. Immediate and professional care is strongly recommended.",
         copingTips: [
-            "Seek Professional Help Immediately:Contact a licensed therapist, counselor, or psychiatrist.",
-            "Use Crisis Resources:Reach out to a trusted crisis hotline or emergency service if you feel unsafe or overwhelmed.",
-            "Establish Safety:Identify one trusted person you can call and create a small safety plan (e.g., remove immediate stressors or harmful items).",
-            "Simplify Routines:Focus only on essential self-care: eating small meals, drinking water, and aiming for consistent sleep.",
-            "Limit Demands:Delegate tasks and reduce immediate stressors (work, social obligations) wherever possible."
+            "Visit DeKUT Medical Center: Located at the Main Campus for immediate clinical consultation.",
+            "Contact University Counselor: Schedule a priority confidential session via the Directorate of Student Welfare.",
+            "Emergency Contact: Reach out to the DeKUT security/emergency line if you feel in immediate crisis.",
+            "Staff Leave: Consult your Head of Department (HoD) regarding the university's wellness leave policy.",
+            "Safety Plan: Identify a trusted colleague or family member you can speak with right now."
         ]
     },
     "Stable (Moderate Risk)": {
-        colorClass: "result-stable",
-        advice: "You are generally stable, but watch for escalating stress. Focus on robust self-care and stress management.",
+        colorClass: "result-stable", // This will trigger the Gold/Yellow color
+        advice: "You are generally stable, but institutional stress may be rising. Focus on robust self-care and professional boundaries.",
         copingTips: [
-            "Establish a Routine:Maintain a consistent sleep schedule (7-9 hours) and regular mealtimes.",
-            "Practice Mindfulness:Incorporate daily meditation, deep breathing exercises, or gentle stretching.",
-            "Build Social Resilience:Maintain a balance between social activity and quiet time to prevent burnout.",
-            "Set Boundaries:Learn to say 'no' to commitments that deplete your energy.",
-            "Consider Proactive Support:Consult a therapist or counselor for preventative mental wellness strategies."
+            "DeKUT Wellness Friday: Join the staff sports sessions held every Friday afternoon at the campus grounds.",
+            "Practice Mindfulness: Use the 'Right to Disconnect'avoid work emails after 5:00 PM and on weekends.",
+            "Campus Nature: Take a 15-minute walk around the DeKUT Conservancy to clear your mind.",
+            "Set Boundaries: Learn to say 'no' to extra administrative tasks that deplete your energy.",
+            "Consult HR: Explore DeKUT's staff support initiatives and professional development workshops."
         ]
     },
     "Low Risk": {
-        colorClass: "result-low",
-        advice: "Continue your healthy practices. Your mental wellness assessment is currently strong.",
+        colorClass: "result-low", // This will trigger the Green color
+        advice: "Your mental wellness is currently strong. Continue your healthy practices and support your peers in the DeKUT community.",
         copingTips: [
-            "Prioritize Physical Health:Maintain a balanced diet and regular, moderate exercise.",
-            "Nurture Connections:Maintain strong social connections and actively network with friends and family.",
-            "Engage in Hobbies:Regularly participate in hobbies, creative outlets, and activities that bring genuine joy.",
-            "Continuous Learning:Learn a new skill or challenge your mind regularly to maintain cognitive flexibility.",
-            "Reflect and Plan:Keep a journal or practice gratitude to maintain perspective and emotional balance."
+            "Maintain Connections: Keep actively networking with friends and fellow staff members.",
+            "Physical Health: Maintain a balanced diet and use the university's recreational facilities regularly.",
+            "Engage in Hobbies: Participate in creative outlets or community projects that bring you joy.",
+            "Continuous Learning: Engage with DeKUT’s research and innovation forums to keep your mind flexible.",
+            "Reflect and Plan: Keep a gratitude journal to maintain your positive emotional balance."
         ]
     }
 };
 
+/**
+ * Helper to get value from Radio Buttons
+ */
 function getRadioButtonValue(name) {
     const radios = document.getElementsByName(name);
     for (let i = 0; i < radios.length; i++) {
@@ -49,29 +51,41 @@ function getRadioButtonValue(name) {
     return null; 
 }
 
+/**
+ * Main function to handle Assessment and API Call
+ */
 async function calculateRisk() {
-    const resultDiv = document.getElementById('result');
-    resultDiv.className = '';
-    resultDiv.innerHTML = '<h2>Loading Assessment...</h2>';
-    resultDiv.classList.remove('show');
-    
+    // 1. Disclaimer Validation Check
+    const consent = document.getElementById('consent-check');
+    if (!consent.checked) {
+        alert("Please acknowledge the Medical Disclaimer before proceeding.");
+        return;
+    }
+
+    const resultPage = document.getElementById('result-page');
+    const analysisContent = document.getElementById('analysis-content');
+    const submitBtn = document.querySelector('.submit-btn');
     const form = document.getElementById('assessment-form');
+
+    // 2. Initial UI Feedback
+    const originalBtnText = submitBtn.innerText;
+    submitBtn.innerText = "Processing DeKUT Staff Diagnostic...";
+    submitBtn.disabled = true;
+
     let userInputs = {};
     let allAnswered = true;
 
-    // --- 1. Collect and Validate Inputs ---
-    // List all input fields from the HTML form (must match feature names used in Python)
+    // --- 3. Collect and Validate Inputs ---
     const featureNames = [
         'family_history', 'Mental_Health_History', 'Days_Indoors', 'Mood_Swings', 
         'Growing_Stress', 'Changes_Habits', 'Coping_Struggles', 'Social_Weakness', 
         'Work_Interest', 'treatment', 'care_options', 'mental_health_interview',
-        'Gender', 'self_employed' // Include non-scoring features needed for backend OHE
+        'Gender', 'self_employed' 
     ];
 
     featureNames.forEach(feature => {
         let value = null;
-        
-        const selectElement = document.getElementById(feature);
+        const selectElement = document.querySelector(`select[name="${feature}"]`);
         
         if (selectElement) {
             value = selectElement.value;
@@ -79,23 +93,21 @@ async function calculateRisk() {
             value = getRadioButtonValue(feature);
         }
         
-        // Basic check for mandatory questions (the core risk factors)
         if (feature !== 'Gender' && feature !== 'self_employed' && (value === "" || value === null)) {
             allAnswered = false;
-            alert(`Please answer the question regarding: ${feature.replace(/_/g, ' ')}`);
         }
 
-        // Send the input value to the backend exactly as the user selected it
         userInputs[feature] = value;
     });
 
     if (!allAnswered) {
-        resultDiv.className = 'result-high';
-        resultDiv.innerHTML = "<p style='font-weight: bold;'>Please answer all mandatory questions before calculating the assessment.</p>";
+        alert("DeKUT Portal: Please answer all questions to receive an accurate assessment.");
+        submitBtn.innerText = originalBtnText;
+        submitBtn.disabled = false;
         return;
     }
 
-    // --- 2. Send Data to Render API ---
+    // --- 4. Send Data to Render API ---
     try {
         const response = await fetch(API_URL, {
             method: 'POST',
@@ -110,39 +122,56 @@ async function calculateRisk() {
         }
 
         const data = await response.json();
-        const category = data.risk_category; // e.g., "High Risk"
-        const score = data.risk_score_prediction; // e.g., 2.0 (the numerical label)
         
-        // --- 3. Display Result based on API Response ---
-        const rec = RECOMMENDATIONS[category];
+        const category = data.risk_category || data.prediction; 
+        const scoreRaw = data.risk_score_prediction || data.score || 0;
+        
+        // Convert decimal to Percentage for display
+        const percentageScore = (scoreRaw * 100).toFixed(0); 
+
+        // Match the model output to localized recommendations
+        const rec = RECOMMENDATIONS[category] || RECOMMENDATIONS["Stable (Moderate Risk)"];
 
         let tipsHtml = rec.copingTips.map(tip => `<li>${tip}</li>`).join('');
 
-        resultDiv.className = rec.colorClass;
-        resultDiv.innerHTML = `
-            <p class="result-category">${category}</p>
-            <p class="result-score">Model Prediction Score: <strong>${score.toFixed(2)}</strong></p>
+        // --- 5. Injected Results Hierarchy (Name -> Status -> Percentage -> Tips) ---
+        analysisContent.innerHTML = `
+            <div class="result-header-block">
+                <p class="result-name-header">System: DeKUT Staff Wellness Portal</p>
+                <h1 class="result-status-text ${rec.colorClass}">Status: ${category}</h1>
+                <p class="result-score-badge">Assessment Match: <strong>${percentageScore}%</strong></p>
+            </div>
             
-            <h3 style="margin-top: 25px;">Coping and Recommendations</h3>
-            <p style="margin-top: 10px; font-style: italic; font-weight: 500;">${rec.advice}</p>
+            <div style="margin-top: 20px; padding: 20px; background: white; border-radius: 12px; border-left: 6px solid var(--dekut-blue);">
+                <h2 style="font-size: 1.2rem; color: #1e293b;">Institutional Analysis</h2>
+                <p style="font-size: 1rem; line-height: 1.5; margin-top: 8px; color: #475569;">"${rec.advice}"</p>
+            </div>
+
+            <h3 style="margin-top: 25px; font-size: 1.1rem; color: #1e293b; border-bottom: 2px solid var(--dekut-gold); display: inline-block;">
+                Your Action Plan
+            </h3>
             <ul class="result-list">
                 ${tipsHtml}
             </ul>
         `;
         
-        // Show the result with a fade-in effect
-        resultDiv.classList.add('show');
-        resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Show result overlay
+        resultPage.classList.remove('hidden');
+        window.scrollTo(0, 0);
 
-    }catch (error) {
+    } catch (error) {
         console.error('Prediction failed:', error);
-        resultDiv.className = 'result-high';
-        resultDiv.innerHTML = `<p style='font-weight: bold;'>Error: Could not connect to the assessment server.</p><p>Please ensure the backend API is running correctly.</p>`;
-        resultDiv.classList.add('show');
+        alert("Connectivity Error: Could not reach the DeKUT Wellness server. Please check your internet or try again later.");
+    } finally {
+        submitBtn.innerText = "Run Assessment";
+        submitBtn.disabled = false;
     }
 }
 
-// Attach event listener to prevent form submission default behavior if user hits Enter
+function closeResult() {
+    document.getElementById('result-page').classList.add('hidden');
+}
+
 document.getElementById('assessment-form').addEventListener('submit', function(event) {
     event.preventDefault();
     calculateRisk();
