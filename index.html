@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DeKUT Staff Wellness Portal</title>
+    <title>DeKUT Community Wellness Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -16,8 +16,8 @@
             <header class="dekut-header">
                 <img src="Dekut Logo.png" alt="DeKUT Logo" class="univ-logo">
                 <p class="univ-name">DEDAN KIMATHI UNIVERSITY OF TECHNOLOGY</p>
-                <h1>Staff Wellness Portal</h1>
-                <p class="subtitle">AI-Driven Mental Health Risk Assessment</p>
+                <h1>DeKUT Community Wellness Portal</h1>
+                <p class="subtitle">AI-Driven Mental Health Risk Assessment for Students & Staff</p>
             </header>
 
             <div class="disclaimer-box">
@@ -31,11 +31,23 @@
             </div>
 
             <form id="assessment-form">
+                <div class="form-section">
+                    <h2 class="section-title">Step 1: Identity</h2>
+                    <div class="question-group">
+                        <label>Please identify your role within the University:</label>
+                        <select id="user_role" required>
+                            <option value="">-- Select Your Role --</option>
+                            <option value="student">Student</option>
+                            <option value="staff">Staff Member</option>
+                        </select>
+                    </div>
+                </div>
+
                 <input type="hidden" name="Gender" value="Male">
                 <input type="hidden" name="self_employed" value="No">
 
                 <div class="form-section">
-                    <h2 class="section-title">Background & History</h2>
+                    <h2 class="section-title">Step 2: Background & History</h2>
                     <div class="question-group">
                         <label>1. Do you have a family history of mental illness?</label>
                         <div class="radio-options">
@@ -57,7 +69,7 @@
                 </div>
 
                 <div class="form-section">
-                    <h2 class="section-title">Current Habits & Well-being</h2>
+                    <h2 class="section-title">Step 3: Current Habits & Well-being</h2>
                     <div class="question-group">
                         <label>3. Time spent predominantly indoors recently?</label>
                         <select name="Days_Indoors" required>
@@ -113,7 +125,7 @@
                         </div>
                     </div>
                     <div class="question-group">
-                        <label>9. Lost interest in work?</label>
+                        <label>9. Lost interest in work or studies?</label>
                         <div class="radio-options">
                             <label class="custom-radio"><input type="radio" name="Work_Interest" value="Yes"
                                     required><span>Yes</span></label>
@@ -158,7 +170,7 @@
                     </label>
                 </div>
 
-                <button type="button" class="submit-btn" onclick="calculateRisk()">Run Assessment</button>
+                <button type="submit" class="submit-btn">Run Assessment</button>
             </form>
         </div>
     </div>
@@ -166,11 +178,11 @@
     <div id="result-page" class="result-overlay hidden">
         <div class="result-container">
             <button class="back-link" onclick="closeResult()">← Return to Assessment</button>
-            <div id="analysis-content"></div>
+            <div id="analysis-content">
+            </div>
             <div class="dekut-resources">
                 <h3>🏛️ DeKUT Support Resources</h3>
-                <p>Visit the DeKUT Medical Center or the University Counselor's office at the Main Campus for
-                    confidential support.</p>
+                <p>Visit the DeKUT Medical Center or the University Counselor's office for confidential support.</p>
             </div>
         </div>
     </div>

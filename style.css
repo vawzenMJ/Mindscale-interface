@@ -1,7 +1,6 @@
 :root {
     --dekut-blue: #004a99;
     --dekut-gold: #f2b411;
-    /* Professional Corporate Gradient */
     --gradient-bg: linear-gradient(135deg, #1e293b 0%, #004a99 100%);
     --white: #ffffff;
     --high-risk: #ef4444;
@@ -43,7 +42,30 @@ body {
     padding-bottom: 20px;
 }
 
-/* --- BIG CLEAR RADIO BUTTONS (TILES) --- */
+/* --- THE UPDATED BLUE BACK BUTTON --- */
+.back-link {
+    background-color: var(--dekut-blue); /* Changed to Blue */
+    color: white;
+    padding: 18px 36px; /* Increased size */
+    font-size: 1.1rem; /* Slightly larger text */
+    font-weight: 700;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-bottom: 35px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+.back-link:hover {
+    background-color: #003366; /* Darker blue on hover */
+    box-shadow: 0 8px 15px rgba(0, 74, 153, 0.3);
+    transform: translateY(-2px);
+}
+
+/* --- THE REST REMAINS THE SAME --- */
+
 .radio-options {
     display: flex;
     gap: 15px;
@@ -54,7 +76,7 @@ body {
 .custom-radio {
     flex: 1;
     min-width: 120px;
-    padding: 18px; /* Bigger padding for a larger touch area */
+    padding: 18px; 
     border: 2px solid #e2e8f0;
     border-radius: 12px;
     text-align: center;
@@ -67,26 +89,14 @@ body {
     justify-content: center;
 }
 
-.custom-radio:hover {
-    border-color: var(--dekut-blue);
-    background: #f0f7ff;
-}
+.custom-radio input { display: none; }
 
-/* Hide the actual radio circle */
-.custom-radio input {
-    display: none;
-}
-
-/* Style for the SELECTED state */
 .custom-radio:has(input:checked) {
     background: var(--dekut-blue);
     color: white;
     border-color: var(--dekut-blue);
-    box-shadow: 0 8px 15px rgba(0, 74, 153, 0.3);
-    transform: translateY(-2px);
 }
 
-/* --- FORM ELEMENTS --- */
 .question-group { margin-bottom: 30px; }
 label { display: block; font-weight: 500; margin-bottom: 15px; font-size: 1rem; color: #1e293b; }
 
@@ -98,7 +108,6 @@ select {
     font-family: inherit;
     font-size: 1rem;
     background: #f8fafc;
-    outline: none;
 }
 
 .submit-btn {
@@ -112,16 +121,8 @@ select {
     font-weight: 700;
     cursor: pointer;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: 0.3s;
 }
 
-.submit-btn:hover {
-    background: #003366;
-    box-shadow: 0 10px 20px rgba(0, 74, 153, 0.4);
-}
-
-/* --- RESULTS PAGE --- */
 .result-overlay {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -144,18 +145,6 @@ select {
     padding: 40px;
     border-radius: 28px;
     box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-}
-
-.back-link {
-    background-color: var(--dekut-blue);
-    color: white;
-    padding: 14px 28px;
-    font-size: 1rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    margin-bottom: 35px;
 }
 
 .result-status-text { font-size: 2.4rem; font-weight: 800; margin-bottom: 10px; }
