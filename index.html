@@ -71,8 +71,11 @@
                 <div class="form-section">
                     <h2 class="section-title">Step 3: Current Habits & Well-being</h2>
                     <div class="question-group">
-                        <label>3. Time spent predominantly indoors recently?</label>
-                        <select name="Days_Indoors" required>
+                        <label for="Days_Indoors" class="question-label">
+                            3. Over the last 60 days, how much time have you spent predominantly indoors?
+                        </label>
+
+                        <select name="Days_Indoors" id="Days_Indoors" class="custom-select" required>
                             <option value="">-- Select --</option>
                             <option value="1-14 days">1-14 days</option>
                             <option value="15-30 days">15-30 days</option>
@@ -134,12 +137,16 @@
                         </div>
                     </div>
                     <div class="question-group">
-                        <label>10. Sought treatment recently?</label>
+                        <label class="question-label">10. Have you sought professional treatment in the last 3
+                            months?</label>
+
                         <div class="radio-options">
-                            <label class="custom-radio"><input type="radio" name="treatment" value="Yes"
-                                    required><span>Yes</span></label>
-                            <label class="custom-radio"><input type="radio" name="treatment"
-                                    value="No"><span>No</span></label>
+                            <label class="custom-radio">
+                                <input type="radio" name="treatment" value="Yes" required> Yes
+                            </label>
+                            <label class="custom-radio">
+                                <input type="radio" name="treatment" value="No"> No
+                            </label>
                         </div>
                     </div>
                     <div class="question-group">
